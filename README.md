@@ -162,6 +162,21 @@ This project is created for professional use. Customize as needed for your legal
 - Google Fonts for typography
 - Modern web standards for optimal performance
 
+## 📧 Contact Form Integration
+
+The contact form is currently set up to open the user's email client with a pre-filled email to `kajolshah6504@gmail.com`. For a more professional experience, consider integrating with one of these email services:
+
+### Recommended Email Services:
+- **EmailJS** (https://www.emailjs.com/) - Free tier available, client-side email sending
+- **Formspree** (https://formspree.io/) - Simple form handling with email notifications
+- **Netlify Forms** - Built-in form handling if hosted on Netlify
+- **Custom Backend** - Your own server-side email handling
+
+### Current Setup:
+- Contact form opens user's email client with pre-filled content
+- All emails will be sent to: `kajolshah6504@gmail.com`
+- Form includes validation and professional formatting
+
 ---
 
 **Built with ❤️ for professional legal services**

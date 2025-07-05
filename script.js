@@ -100,19 +100,55 @@ contactForm.addEventListener('submit', function(e) {
         return;
     }
     
-    // Simulate form submission
-    const submitButton = this.querySelector('button[type="submit"]');
-    const originalText = submitButton.textContent;
-    submitButton.textContent = 'Sending...';
-    submitButton.disabled = true;
+    // Create email content
+    const emailSubject = `New Contact Form Submission - ${data.service || 'General Inquiry'}`;
+    const emailBody = `
+Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone || 'Not provided'}
+Service: ${data.service || 'Not specified'}
+
+Message:
+${data.message}
+
+---
+This message was sent from your portfolio website contact form.
+    `.trim();
     
-    // Simulate API call
-    setTimeout(() => {
+    // Create mailto link
+    const mailtoLink = `mailto:kajolshah6504@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
+    // Show success message
+    showNotification('Email client opened! Please send the email to complete your inquiry.', 'success');
+    
+    // Reset form
+    contactForm.reset();
+    
+    // Alternative: For production, you can integrate with email services like:
+    // - EmailJS (https://www.emailjs.com/)
+    // - Formspree (https://formspree.io/)
+    // - Netlify Forms (if hosted on Netlify)
+    // - Your own backend API
+    
+    // Example with EmailJS (uncomment and configure):
+    /*
+    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
+        from_name: data.name,
+        from_email: data.email,
+        phone: data.phone,
+        service: data.service,
+        message: data.message,
+        to_email: 'kajolshah6504@gmail.com'
+    }).then(function(response) {
         showNotification('Thank you for your message! We will get back to you soon.', 'success');
         contactForm.reset();
-        submitButton.textContent = originalText;
-        submitButton.disabled = false;
-    }, 2000);
+    }, function(error) {
+        showNotification('Failed to send message. Please try again or contact us directly.', 'error');
+    });
+    */
 });
 
 // Notification system
